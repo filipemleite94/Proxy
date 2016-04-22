@@ -3,10 +3,12 @@ import java.util.ArrayList;
 import java.io.*;
 
 public class proxy {
-
 	public static void main(String[] args) {
 		try{
+			//Aberto o socket de servidor;
 			ServerSocket s = new ServerSocket(8080);
+			
+			//Laço infinito de recebimento e encaminhamento de pedidos e recebimento e encaminhamento de respostas.
 			for(;;){
 				webserve w = new webserve(s.accept());
 				w.getRequest();

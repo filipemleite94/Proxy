@@ -3,6 +3,7 @@ import java.util.StringTokenizer;
 import java.io.*;
 import java.util.ArrayList;
 
+//Classe que faz o recebimento de pedidos e encaminhamento de respostas.
 public class webserve {
 	Socket s;
 	webserve w;
@@ -10,12 +11,14 @@ public class webserve {
 	BufferedReader in;
 	String resource;
 
+	//Construtor
 	public webserve(Socket s) throws IOException {
 			this.s = s;
 			out=s.getOutputStream();
 			in=new BufferedReader(new InputStreamReader(s.getInputStream()));
 	}
 	
+	//Recebe a path, procura o GET e pega o termo seguinte a ele
 	void getRequest(){
 		try{
 			String message;
@@ -34,6 +37,7 @@ public class webserve {
 		}
 	}
 	
+	//Recebe a resposta em um array de inteiros e encaminha um texto
 	void returnResponse(ArrayList<Integer> valores) {
 		int count;
 		try{
@@ -44,6 +48,7 @@ public class webserve {
 		}
 	}
 	
+	//Fecha os sockets e as streams
 	public void close(){
 		try {
 			in.close(); out.close(); s.close();

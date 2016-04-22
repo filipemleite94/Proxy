@@ -2,18 +2,21 @@ import java.net.*;
 import java.io.*;
 import java.util.ArrayList;
 
+//Encaminha o pedido e recebe a resposta da pagina;
 public class webretriever {
 	Socket s;
 	webretriever w;
 	OutputStream out;
 	InputStream in;
 
+	//Contrutor
 	public webretriever(String server, int port) throws IOException, UnknownHostException {
 			this.s=new Socket (server, port);
 			out=s.getOutputStream();
 			in=s.getInputStream();
 	}
 	
+	//Faz o pedido;
 	void Request(String path){
 		try{
 			String mensage= "GET " + path + "\n\n";
@@ -24,6 +27,7 @@ public class webretriever {
 		}
 	}
 
+	//Recebe a resposta em um array de inteiros
 	ArrayList<Integer> getResponse(){
 		int c;
 		ArrayList<Integer> valores= new ArrayList<Integer>();
@@ -36,6 +40,7 @@ public class webretriever {
 		return valores;
 	}
 	
+	//Dá close na Socket e nas streams;
 	public void close(){
 		try {
 			in.close(); out.close(); s.close();
