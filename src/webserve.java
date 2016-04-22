@@ -1,6 +1,7 @@
 import java.net.*;
 import java.util.StringTokenizer;
 import java.io.*;
+import java.util.ArrayList;
 
 public class webserve {
 	Socket s;
@@ -33,13 +34,11 @@ public class webserve {
 		}
 	}
 	
-	void returnResponse() {
-		int c;
+	void returnResponse(ArrayList<Integer> valores) {
+		int count;
 		try{
-			FileInputStream f = new FileInputStream("."+resource);
-			while((c=f.read())!=-1)
-				out.write(c);
-			f.close();
+			for(count=0; count<valores.size(); count++)
+				out.write(valores.get(count));
 		} catch (IOException e){
 			System.err.println("IOException in reading in Web server");
 		}

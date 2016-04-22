@@ -1,10 +1,10 @@
 import java.net.*;
-import java.util.StringTokenizer;
 import java.io.*;
+import java.util.ArrayList;
 
 public class webretriever {
 	Socket s;
-	webserve w;
+	webretriever w;
 	OutputStream out;
 	InputStream in;
 
@@ -23,15 +23,17 @@ public class webretriever {
 			System.err.println("Error in HTTP request");
 		}
 	}
-	
-	void getResponse() {
+
+	ArrayList<Integer> getResponse(){
 		int c;
+		ArrayList<Integer> valores= new ArrayList<Integer>();
 		try{
 			while((c=in.read())!= -1)
-				System.out.print((char) c);
+				valores.add(c);
 		} catch (IOException e){
 			System.err.println("IOException in reading from Web server");  
 		}
+		return valores;
 	}
 	
 	public void close(){
